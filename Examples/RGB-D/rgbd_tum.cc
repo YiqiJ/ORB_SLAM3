@@ -38,6 +38,14 @@ int main(int argc, char **argv)
         return 1;
     }
 
+    // bool bFileName= (((argc-3) % 2) == 1);
+    // string file_name;
+    // if (bFileName)
+    // {
+    //     file_name = string(argv[argc-1]);
+    //     cout << "file name: " << file_name << endl;
+    // }
+    
     // Retrieve paths to images
     vector<string> vstrImageFilenamesRGB;
     vector<string> vstrImageFilenamesD;
@@ -59,7 +67,7 @@ int main(int argc, char **argv)
     }
 
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
-    ORB_SLAM3::System SLAM(argv[1],argv[2],ORB_SLAM3::System::RGBD,true);
+    ORB_SLAM3::System SLAM(argv[1],argv[2],ORB_SLAM3::System::RGBD,false);
     float imageScale = SLAM.GetImageScale();
 
     // Vector for tracking time statistics
@@ -141,7 +149,18 @@ int main(int argc, char **argv)
     // Save camera trajectory
     SLAM.SaveTrajectoryTUM("CameraTrajectory.txt");
     SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");   
-
+    // if (bFileName)
+    // {
+    //     const string kf_file =  "kf_" + string(argv[argc-1]) + ".txt";
+    //     const string f_file =  "f_" + string(argv[argc-1]) + ".txt";
+    //     SLAM.SaveTrajectoryEuRoC(f_file);
+    //     SLAM.SaveKeyFrameTrajectoryEuRoC(kf_file);
+    // }
+    // else
+    // {
+    //     SLAM.SaveTrajectoryEuRoC("CameraTrajectory.txt");
+    //     SLAM.SaveKeyFrameTrajectoryEuRoC("KeyFrameTrajectory.txt");
+    // }   
     return 0;
 }
 
