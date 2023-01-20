@@ -76,7 +76,6 @@ def align(model,data):
     rotmodel = rot*model_zerocentered
     dots = 0.0
     norms = 0.0
-
     for column in range(data_zerocentered.shape[1]):
         dots += numpy.dot(data_zerocentered[:,column].transpose(),rotmodel[:,column])
         normi = numpy.linalg.norm(model_zerocentered[:,column])
